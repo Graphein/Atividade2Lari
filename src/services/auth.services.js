@@ -20,7 +20,6 @@ export async function registerService({ nome, email, telefone = null, password, 
     role,
   });
 
-  // não expor hash
   return { id: created.id, nome: created.nome, email: created.email, telefone: created.telefone, role: created.role };
 }
 

@@ -1,4 +1,4 @@
-// src/services/adocao.services.js
+
 import * as Repo from "../repositories/adocao.repo.js";
 import { findAnimalWithAdotante as findAnimalById } from "../repositories/animal.repo.js";
 
@@ -16,7 +16,6 @@ export async function vincularService(adotanteId, animalId, status = "INTERESSE"
     throw e;
   }
 
-  // regra: animal precisa existir
   const animal = await findAnimalById(animalId);
   if (!animal) {
     const e = new Error("Animal inexistente");

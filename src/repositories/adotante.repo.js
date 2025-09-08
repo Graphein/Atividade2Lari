@@ -1,6 +1,5 @@
 import { query } from "../config/db.js";
 
-// cria novo adotante (agora aceita password_hash e role)
 export async function createAdotante({ nome, email, telefone, password_hash = null, role = "USER" }) {
   const { rows } = await query(
     `INSERT INTO adotante (nome, email, telefone, password_hash, role)
@@ -11,13 +10,11 @@ export async function createAdotante({ nome, email, telefone, password_hash = nu
   return rows[0];
 }
 
-// busca adotante por e-mail (para login/registro)
 export async function findByEmail(email) {
   const { rows } = await query("SELECT * FROM adotante WHERE email = $1", [email]);
   return rows[0] || null;
 }
 
-// busca adotante + seus animais (inalterado, só mantendo Postgres)
 export async function findAdotanteWithAnimais(id) {
   const { rows } = await query(
     `SELECT 

@@ -4,7 +4,7 @@ import { authMiddleware } from "../middlewares/auth-middleware.js";
 
 const router = Router();
 
-router.get("/adotantes/:id", getAdotanteWithAnimais);       // público
-router.post("/adotantes", authMiddleware, postAdotante);    // protegido
+router.get("/adotantes/:id", getAdotanteWithAnimais);     
+router.post("/adotantes", authMiddleware, postAdotante);    
 
 export default router;

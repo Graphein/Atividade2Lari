@@ -1,4 +1,3 @@
-// src/repositories/adocao.repo.js
 import { query } from "../config/db.js";
 
 export async function linkAdotanteAnimal(adotanteId, animalId, status = "INTERESSE") {

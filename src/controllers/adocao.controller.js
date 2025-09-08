@@ -1,4 +1,3 @@
-// src/controllers/adocao.controller.js
 import {
   vincularService,
   desvincularService,
@@ -43,7 +42,6 @@ export async function getAdotantes(req, res) {
   }
 }
 
-// PUT para usuário atualizar seu próprio vínculo
 export async function putMeuVinculo(req, res) {
   try {
     const adotanteId = req.user.id;
@@ -55,7 +53,6 @@ export async function putMeuVinculo(req, res) {
   }
 }
 
-// PATCH para ADMIN atualizar qualquer vínculo
 export async function patchStatus(req, res) {
   try {
     const { adotanteId, animalId, status } = req.body;

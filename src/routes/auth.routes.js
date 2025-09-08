@@ -6,6 +6,6 @@ const router = Router();
 
 router.post("/auth/register", register);
 router.post("/auth/login", login);
-router.get("/auth/me", authMiddleware, me); // opcional, retorna dados do usuário autenticado
+router.get("/auth/me", authMiddleware, me); 
 
 export default router;

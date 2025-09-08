@@ -1,10 +1,5 @@
-// src/repositories/adocao.resumo.repo.js
 import { query } from "../config/db.js";
 
-/**
- * Busca vínculos do adotante dentro de um período (opcional).
- * Se não passar período, usa todas as adocoes dele.
- */
 export async function findResumoAdocao(adotanteId, { de = null, ate = null } = {}) {
   const params = [adotanteId];
   const filters = ["d.adotante_id = $1"];

@@ -1,4 +1,3 @@
-// src/services/animal.services.js
 import {
   findAllAnimais as findAllAnimaisRepo,
   findAnimalWithAdotante as findAnimalWithAdotanteRepo,
@@ -16,7 +15,6 @@ export async function getAnimalByIdService(id) {
 }
 
 export async function createAnimalParaAdotanteService(data) {
-  // validações mínimas de regra de negócio
   if (!data?.nome?.trim()) {
     const e = new Error('Campo "nome" é obrigatório');
     e.status = 400;

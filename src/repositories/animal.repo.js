@@ -1,4 +1,3 @@
-// src/repositories/animal.repo.js
 import { db, query } from "../config/db.js";
 
 export async function findAllAnimais({ page = 1, limit = 50 } = {}) {
@@ -71,7 +70,6 @@ export async function createAnimalParaAdotante({
       throw e;
     }
 
-    // ajuste os valores conforme seus CHECK/ENUMs na tabela
     const validStatus = ["disponível", "adotado", "indisponível"];
     if (!validStatus.includes(status)) {
       const e = new Error(`Campo 'status' inválido (use: ${validStatus.join(", ")})`);
@@ -79,7 +77,6 @@ export async function createAnimalParaAdotante({
       throw e;
     }
 
-    // valida FK: adotante existe?
     const exists = await client.query("SELECT id FROM adotante WHERE id = $1", [adotante_id]);
     if (!exists.rowCount) {
       const e = new Error("Adotante não encontrado");
@@ -87,7 +84,6 @@ export async function createAnimalParaAdotante({
       throw e;
     }
 
-    // cria animal
     const ins = await client.query(
       `INSERT INTO animal (nome, especie, raca, sexo, status, adotante_id)
        VALUES ($1, $2, $3, $4, $5, $6)
@@ -97,7 +93,6 @@ export async function createAnimalParaAdotante({
 
     const animalId = ins.rows[0].id;
 
-    // retorna já com join
     const result = await client.query(
       `SELECT a.id, a.nome, a.especie, a.raca, a.sexo, a.status,
               ad.id AS adotante_id, ad.nome AS adotante_nome
@@ -111,7 +106,6 @@ export async function createAnimalParaAdotante({
     return result.rows[0];
   } catch (err) {
     await client.query("ROLLBACK");
-    // FK inválida: código Postgres 23503
     if (err.code === "23503") {
       err.status = 400;
       err.message = "FK inválida: adotante_id não existe";

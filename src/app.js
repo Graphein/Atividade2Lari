@@ -8,10 +8,10 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
-// Rotas públicas de auth
+
 app.use(authRoutes);
 
-// Suas rotas de domínio
+
 app.use(adotanteRoutes);
 app.use(animalRoutes);
 
